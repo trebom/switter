@@ -30,6 +30,7 @@ const Navigation = ({userObj}) => (
               : "Profile"}
           </span>
         </Link>
+        
       </li>
     </ul>
   </nav>

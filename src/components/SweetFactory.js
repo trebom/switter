@@ -7,6 +7,7 @@ import { faPlus, faTimes } from "@fortawesome/free-solid-svg-icons";
 const SweetFactory = ({ userObj }) => {
   const [sweet, setSweet] = useState("");
   const [attachment, setAttachment] = useState("");
+  /* -------------------------------- */
   const onSubmit = async (event) => {
     if (sweet === "") {
         return;
@@ -20,22 +21,26 @@ const SweetFactory = ({ userObj }) => {
       const response = await attachmentRef.putString(attachment, "data_url");
       attachmentUrl = await response.ref.getDownloadURL();
     }
+    /* -------------------------------- */
     const sweetObj = {
       text: sweet,
       createdAt: Date.now(),
       creatorId: userObj.uid,
+      creatorName: userObj.displayName,
       attachmentUrl,
     };
     await dbService.collection("sweets").add(sweetObj);
     setSweet("");
     setAttachment("");
   };
+  /* -------------------------------- */
   const onChange = (event) => {
     const {
       target: { value },
     } = event;
     setSweet(value);
   };
+  /* -------------------------------- */
   const onFileChange = (event) => {
     const {
       target: { files },
@@ -50,7 +55,9 @@ const SweetFactory = ({ userObj }) => {
     };
     reader.readAsDataURL(theFile);
   };
+  /* -------------------------------- */
   const onClearAttachment = () => setAttachment("");
+  /* -------------------------------- */
   return (
     <form onSubmit={onSubmit} className="factoryForm">
         <div className="factoryInput__container">
@@ -71,6 +78,7 @@ const SweetFactory = ({ userObj }) => {
         </label>
 
         <input 
+        title="image"
             id="attach-file"
             type="file"
             accept="image/*"
@@ -83,6 +91,7 @@ const SweetFactory = ({ userObj }) => {
       {attachment && (
         <div className="factoryForm__attachment">
             <img
+                alt="img"
                 src={attachment}
                 style={{
                     backgroundImage: attachment,
@@ -97,4 +106,5 @@ const SweetFactory = ({ userObj }) => {
     </form>
   );
 };
+
 export default SweetFactory;

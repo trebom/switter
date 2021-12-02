@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {dbService, storageService} from 'fbase';
+import {dbService} from 'fbase';
 import Sweet from "components/Sweet";
 import SweetFactory from "components/SweetFactory";
 
@@ -8,7 +8,10 @@ const Home = ({userObj}) => {
     const [sweets, setSweets] = useState([]);
 
     useEffect(() => {
-        dbService.collection("sweets").onSnapshot((snapshot) => {
+        dbService
+        .collection("sweets")
+        .orderBy("createdAt", "desc")
+        .onSnapshot((snapshot) => {
             const sweetArray = snapshot.docs.map((doc) => ({
                 id: doc.id,
                 ...doc.data(),
@@ -16,7 +19,7 @@ const Home = ({userObj}) => {
             setSweets(sweetArray);
         })
     }, []);
-    
+    console.log(sweets);
     return (
         <div className="container">
             <SweetFactory userObj={userObj} />

@@ -33,7 +33,7 @@ form {
 }
 
 .sweet-input::placeholder {
-  color: white;
+  color: rgb(238, 227, 227);
   opacity: 0.9;
 }
 
@@ -169,11 +169,10 @@ form {
 
 .sweet {
   margin-bottom: 20px;
-  background-color: white;
+  background-color: rgb(233, 219, 219);
   width: 100%;
-  max-width: 320px;
-  padding: 20px;
-  border-radius: 10px;
+  padding: 10px;
+  border-radius: 5px;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -185,19 +184,26 @@ form {
 }
 
 .sweet img {
-  right: -10px;
-  top: 20px;
-  position: absolute;
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
+  
+  border-radius: 5%;
+  width: 100%;
   margin-top: 10px;
 }
 
+.sweet_text {
+  margin-top: 5px;
+  color:#1b1c1d;
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+.sweet_delete .sweet_edit {
+  margin-right: 10px;
+}
 .sweet__actions {
-  position: absolute;
-  right: 10px;
-  top: 10px;
+  display: flex;
+  color: dimgrey;
+  margin-top: 10px;
+  align-items: space-between;
 }
 
 .sweet__actions span {
@@ -207,7 +213,9 @@ form {
 .sweet__actions span:first-child {
   margin-right: 10px;
 }
-
+.sweet_username {
+  margin-left: 10px;
+}
 /* Auth */
 
 .authContainer {
